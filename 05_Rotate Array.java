@@ -1,5 +1,7 @@
 class Solution {
     public void rotate(int[] nums, int k) {
+        // Time Complexity O(n)
+        // Space Complexity O(n)
         int n = nums.length;
         int steps = k % n;
         Stack<Integer> s = new Stack<>();
