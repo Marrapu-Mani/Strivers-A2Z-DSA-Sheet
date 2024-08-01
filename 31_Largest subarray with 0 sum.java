@@ -16,8 +16,6 @@ class GfG
         // }
         // return len;
         
-        
-        
         // Time Complexity O(n)
         // Space Complexity O(n)
         Map<Integer, Integer> prefixSum = new HashMap<>();
