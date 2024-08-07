@@ -42,15 +42,17 @@ class Solution {
         }
         // Find ending position
         int ending = -1;
-        start = 0;
-        end = n - 1;
-        while(start <= end){
-            int mid = (start + end) / 2;
-            if(nums[mid] == target){
-                ending = mid;
-                start = mid + 1;
-            } else if(target > nums[mid]) start = mid + 1;
-            else end = mid - 1;
+        if(starting != -1){     // if there is no starting position, then there is no ending position also 
+            start = 0;
+            end = n - 1;
+            while(start <= end){
+                int mid = (start + end) / 2;
+                if(nums[mid] == target){
+                    ending = mid;
+                    start = mid + 1;
+                } else if(target > nums[mid]) start = mid + 1;
+                else end = mid - 1;
+            }
         }
         return new int[] {starting, ending};
     }
