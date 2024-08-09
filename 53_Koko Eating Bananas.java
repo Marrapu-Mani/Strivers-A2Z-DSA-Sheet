@@ -10,7 +10,7 @@ class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         Arrays.sort(piles);
         int n = piles.length;
-        // Time Complexity O(n^2)
+        // Time Complexity O(max(piles[]) * n)
         // Space Complexity O(1)
         // for(int i=1; i<=piles[n-1]; i++){
         //     int requiredTime = requiredTime(piles, i);
@@ -18,7 +18,7 @@ class Solution {
         // }
         // return 0;
 
-        // Time Complexity O(nlogn)
+        // Time Complexity O(log(max(piles[])) * n)
         // Space Complexity O(1)
         int start = 1, end = piles[n-1], ans = 0;
         while(start <= end){
