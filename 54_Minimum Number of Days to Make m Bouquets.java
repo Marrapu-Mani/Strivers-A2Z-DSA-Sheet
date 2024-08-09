@@ -24,7 +24,7 @@ class Solution {
 
     public int minDays(int[] bloomDay, int m, int k) {
         int[] minmax = minmax(bloomDay);
-        // Time Complexity O((max-min+1)*n)
+        // Time Complexity O((max-min+1) * n)
         // Space Complexity O(1)
         // for(int i = minmax[0]; i<= minmax[1]; i++){
         //     if(isPossible(bloomDay, i, m, k)) return i;
@@ -32,7 +32,7 @@ class Solution {
         // return -1;
 
 
-        // Time Complexity O(log(max-min+1)*n)
+        // Time Complexity O(log(max-min+1) * n)
         // Space Complexity O(1)
         int ans = -1;
         int start = minmax[0], end = minmax[1];
