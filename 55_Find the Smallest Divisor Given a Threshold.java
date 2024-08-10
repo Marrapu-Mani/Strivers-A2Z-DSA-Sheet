@@ -22,6 +22,8 @@ class Solution {
         // for(int i=1; i<=max; i++){
         //     if(divisionSum(nums, i) <= threshold) return i;
         // }
+        // return Integer.MAX_VALUE;
+
 
         // Time Complexity O(log(max(nums[])) * n)
         // Space Complexity O(1)
