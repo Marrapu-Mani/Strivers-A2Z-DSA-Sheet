@@ -1,43 +1,35 @@
 class Solution {
-    // Helper function to check if the array can be split into k or fewer subarrays with max sum <= mid
-    public boolean check(int[] nums, int k, int mid) {
-        int count = 1; // Start with one subarray
-        int sum = 0; // Sum of the current subarray
-
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] + sum > mid) {
-                count++; // Need to start a new subarray
-                sum = nums[i]; // Start new subarray with current element
-            } else {
-                sum += nums[i]; // Add current element to current subarray
-            }
+    static int[] maxSum(int[] arr){
+        int max = Integer.MIN_VALUE, sum = 0;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i] > max) max = arr[i];
+            sum += arr[i];
         }
 
-        return count <= k; // Return true if we can split into k or fewer subarrays
+        return new int[] {max, sum};
     }
 
+    static int countSplits(int[] nums,int k,int max){
+        int splits = 1, sum = 0;
+        for(int num: nums){
+            if(sum + num > max){
+                splits = splits + 1;
+                sum = num;
+            } else sum += num;
+        }
+        return splits;
+    }
+
+    // Time Complexity O(log(sum(nums[]) - max(nums[])) * n)
+    // Space Compexity O(1)
     public int splitArray(int[] nums, int k) {
-        int l = Integer.MIN_VALUE; // Lower bound of binary search (max element in array)
-        int r = 0; // Upper bound of binary search (sum of all elements in array)
-        int res = 0;
-
-        // Calculate the initial bounds
-        for (int i = 0; i < nums.length; i++) {
-            r += nums[i];
-            l = Math.max(l, nums[i]);
+        int[] maxSum = maxSum(nums);
+        int start = maxSum[0], end = maxSum[1];
+        while(start <= end){
+            int mid = (start + end) / 2;
+            if(countSplits(nums, k, mid) <= k) end = mid - 1;
+            else start = mid + 1;
         }
-
-        // Binary search to find the minimum possible maximum subarray sum
-        while (l <= r) {
-            int mid = (l + r) / 2;
-            if (check(nums, k, mid)) {
-                res = mid; // Possible answer
-                r = mid - 1; // Try for a smaller maximum sum
-            } else {
-                l = mid + 1; // Increase the possible maximum sum
-            }
-        }
-
-        return res; // Return the minimum possible maximum subarray sum
+        return start;
     }
 }
